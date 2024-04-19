@@ -1,0 +1,15 @@
+{
+    "name": "yurt0002/php-crud-music",
+    "autoload": {
+        "psr-4": {
+            "Yurt0002\\PhpCrudMusic\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Emre YURTTAS",
+            "email": "emre.yurttas@etudiant.univ-reims.fr"
+        }
+    ],
+    "require": {}
+}
