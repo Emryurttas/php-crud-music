@@ -2,3 +2,4 @@
 .idea
 password
 /vendor/
+.php-cs-fixer.cache

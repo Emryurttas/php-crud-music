@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 require_once '../vendor/autoload.php';
@@ -18,5 +19,5 @@ SQL
 $stmt->execute();
 
 while (($ligne = $stmt->fetch()) !== false) {
-    echo "<p>{$ligne['name']}\n";
+    echo "<p>{$ligne['name']}\n</p>";
 }

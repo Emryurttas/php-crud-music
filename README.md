@@ -9,3 +9,17 @@
 >     php -d display_errors -S localhost:8000 -t public/
 
 4. Une fois le serveur lancé, ouvrez votre navigateur Web et accédez à l'URL http://localhost:8000 pour voir votre application en cours d'exécution.
+
+## Style de codage
+
+>php vendor/bin/php-cs-fixer fix --dry-run
+
+Cette commande vérifie le code pour les problèmes de style et d'indentation, mais ne fait aucune modification. C'est utile pour voir quels fichiers ou quelles parties de votre code doivent être corrigés.
+
+>php vendor/bin/php-cs-fixer fix --dry-run --diff
+
+ Cette commande est similaire à la précédente, mais elle affiche également les modifications proposées avant de les appliquer.
+
+>php vendor/bin/php-cs-fixer fix
+
+Cette commande applique effectivement les corrections au code. Les corrections sont apportées directement aux fichiers.
