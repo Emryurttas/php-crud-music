@@ -23,3 +23,7 @@ Cette commande vérifie le code pour les problèmes de style et d'indentation, m
 >php vendor/bin/php-cs-fixer fix
 
 Cette commande applique effectivement les corrections au code. Les corrections sont apportées directement aux fichiers.
+
+## Script composer
+
+Ajout du propriété script composer pour gérer et intégré des paquets dans leur projet
