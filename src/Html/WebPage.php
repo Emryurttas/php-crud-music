@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 namespace Html;
@@ -170,4 +171,3 @@ HTML;
         return "Dernière modification de cette page le ". date("d/m/Y à H:i:s", getlastmod());
     }
 }
-

@@ -26,4 +26,13 @@ Cette commande applique effectivement les corrections au code. Les corrections s
 
 ## Script composer
 
-Ajout du propriété script composer pour gérer et intégré des paquets dans leur projet
+Ajout des script composer pour faciliter les tests
+
+>    "scripts": {\
+        "start:linux": "php -S localhost:8000 -t public",\
+        "test:cs": "vendor/bin/php-cs-fixer fix --dry-run",\
+        "fix:cs": "vendor/bin/php-cs-fixer fix",\
+        "config": {
+            "process-timeout": 0
+        }\
+    }

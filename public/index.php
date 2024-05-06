@@ -21,8 +21,8 @@ SQL
 
 $stmt->execute();
 
-while (($ligne = $stmt->fetch()) !== false) {
-    $escape = $webPage->escapeString($ligne['name']);
+while (($line = $stmt->fetch()) !== false) {
+    $escape = $webPage->escapeString($line['name']);
     $webPage->appendContent("<div>$escape</div>\n");
 }
 

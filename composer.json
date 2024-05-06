@@ -18,12 +18,12 @@
         "friendsofphp/php-cs-fixer": "^3.55"
     },
     "scripts": {
-        "test": [
-            "Composer\\Config::disableProcessTimeout",
-            "phpunit"
-        ],
+        "start:linux": "php -S localhost:8000 -t public",
+        "test:cs": "vendor/bin/php-cs-fixer fix --dry-run",
+        "fix:cs": "vendor/bin/php-cs-fixer fix",
         "config": {
             "process-timeout": 0
         }
     }
+
 }
