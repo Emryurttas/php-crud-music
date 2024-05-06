@@ -7,7 +7,6 @@ require_once '../vendor/autoload.php';
 use Database\MyPdo;
 use Html\WebPage;
 
-MyPDO::setConfiguration('mysql:host=mysql;dbname=cutron01_music;charset=utf8', 'web', 'web');
 
 $webPage = new WebPage();
 

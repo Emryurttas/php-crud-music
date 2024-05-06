@@ -36,3 +36,6 @@ Ajout des script composer pour faciliter les tests
             "process-timeout": 0
         }\
     }
+
+##  Configuration de la base de données
+>on creer le fichier .mypdo.ini afin de simplifier la configuration de la base de donnée
