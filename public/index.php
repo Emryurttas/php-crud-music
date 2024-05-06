@@ -22,5 +22,8 @@ SQL
 $stmt->execute();
 
 while (($ligne = $stmt->fetch()) !== false) {
-    echo "<div>{$ligne['name']}</div>";
+    $webPage->appendContent("<div>{$ligne['name']}</div>");
 }
+
+echo $webPage->toHTML();
+
