@@ -2,7 +2,7 @@
     "name": "yurt0002/php-crud-music",
     "autoload": {
         "psr-4": {
-            "Yurt0002\\PhpCrudMusic\\": "src/"
+            "": "src/"
         }
     },
     "authors": [
@@ -11,5 +11,10 @@
             "email": "emre.yurttas@etudiant.univ-reims.fr"
         }
     ],
-    "require": {}
+    "require": {
+        "ext-pdo": "*"
+    },
+    "require-dev": {
+        "friendsofphp/php-cs-fixer": "^3.54"
+    }
 }
