@@ -22,8 +22,10 @@ SQL
 $stmt->execute();
 
 while (($ligne = $stmt->fetch()) !== false) {
-    $webPage->appendContent("<div>{$ligne['name']}</div>");
+    $escape = $webPage->escapeString($ligne['name']);
+    $webPage->appendContent("<div>$escape</div>\n");
 }
 
-echo $webPage->toHTML();
 
+
+echo $webPage->toHTML();
