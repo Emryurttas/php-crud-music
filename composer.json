@@ -20,7 +20,7 @@
     "scripts": {
         "start:linux": [
             "Composer\\Config::disableProcessTimeout",
-            "php -S localhost:8000 -t public"
+            "bin/run-server.sh"
         ],
         "start": "@start:linux",
         "test:cs": "vendor/bin/php-cs-fixer fix --dry-run",
