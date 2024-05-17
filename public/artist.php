@@ -7,13 +7,13 @@ use Html\WebPage;
 
 $webPage = new WebPage();
 
-$artistId = 17;
-
-if (isset($_GET['artistId'])) {
-    header('Location:http://localhost:8000/artist.php');
+if (!isset($_GET['artistId']) || !is_numeric($_GET['artistId'])) {
+    header("Location: artist.php", true, 302);
+    exit;
 }
 
-// Fetch artist name
+$artistId = ($_GET['artistId']);
+
 $stmt = MyPDO::getInstance()->prepare(
     <<<'SQL'
     SELECT name
@@ -21,29 +21,36 @@ $stmt = MyPDO::getInstance()->prepare(
     WHERE id = ?
 SQL
 );
+
 $stmt->execute([$artistId]);
 
-$artist = $stmt->fetch();
-$artistName = $webPage->escapeString($artist['name']);
+$artistName = "nom de l'artiste";
+if ($line = $stmt->fetch()) {
+    $artistName = $webPage->escapeString($line['name']);
+}
+
 $webPage->setTitle("Albums de $artistName");
 $webPage->appendContent("<h1>Albums de $artistName</h1>\n");
 
-
 $stmtAlbums = MyPDO::getInstance()->prepare(
     <<<'SQL'
-    SELECT title, year
+    SELECT name,year
     FROM album
-    WHERE id = ?
-    ORDER BY year DESC
+    WHERE artistId = ?
+    ORDER BY year DESC,name
 SQL
 );
 $stmtAlbums->execute([$artistId]);
 
-while (($album = $stmtAlbums->fetch()) !== false) {
-    $escapedTitle = $webPage->escapeString($album['title']);
-    $escapedYear = $webPage->escapeString((string) $album['year']);
-    $webPage->appendContent("<div>$escapedTitle ($escapedYear)</div>\n");
+$artist = $stmtAlbums->fetch();
+
+if ($artist === false) {
+    http_response_code(404);
+    exit;
 }
 
+while (($album = $stmtAlbums->fetch()) !== false) {
+    $webPage->appendContent("<div>{$album['year']} {$album['name']}</div>\n");
+}
 
 echo $webPage->toHTML();
