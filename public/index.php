@@ -2,6 +2,7 @@
 
 declare(strict_types=1);
 
+
 use Database\MyPdo;
 use Html\WebPage;
 
@@ -18,8 +19,9 @@ SQL
 $stmt->execute();
 
 while (($line = $stmt->fetch()) !== false) {
-    $escape = $webPage->escapeString($line['name']);
-    $webPage->appendContent("<div>$escape</div>\n");
+    $artistId = $line['id'];
+    $artistName = $webPage->escapeString($line['name']);
+    $webPage->appendContent("<div><a href='artist.php?artistId={$artistId}'>$artistName</a></div>\n");
 }
 
 echo $webPage->toHTML();
