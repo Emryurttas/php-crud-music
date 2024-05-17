@@ -1,8 +1,8 @@
 {
     "name": "yurt0002/php-crud-music",
-    "autoload": {
+    "autoload-dev": {
         "psr-4": {
-            "": "src/"
+            "Tests\\": "tests/"
         }
     },
     "authors": [
