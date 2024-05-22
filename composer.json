@@ -1,5 +1,10 @@
 {
     "name": "yurt0002/php-crud-music",
+    "autoload": {
+        "psr-4": {
+            "": "src/"
+        }
+    },
     "autoload-dev": {
         "psr-4": {
             "Tests\\": "tests/"
@@ -32,6 +37,9 @@
         "start:windows": [
             "Composer\\Config::disableProcessTimeout",
             "bin/run-server.bat"
-        ]
+        ],
+        "test:crud": "php vendor/bin/codecept run Crud",
+        "test:codecept":"vendor/bin/codecept run",
+        "test": "@test:codecept"
     }
 }

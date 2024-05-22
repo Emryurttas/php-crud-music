@@ -3,7 +3,7 @@
 namespace Tests\Crud\Collection;
 
 use Entity\Artist;
-use Entity\ArtistCollection;
+use Entity\Collection\ArtistCollection;
 use Tests\CrudTester;
 
 class ArtistCollectionCest

@@ -2,12 +2,16 @@
 
 declare(strict_types=1);
 
-namespace Entity;
+namespace Entity\Collection;
+
+use Database\MyPdo;
+use Entity\Artist;
+use PDO;
 
 class ArtistCollection
 {
     /**
-     * Cette méthode affiche tous les noms des articles en alphabétique
+     * Cette méthode affiche tous les noms des artistes en alphabétique
     * @return Artist[]
      */
     public static function findAll(): array
@@ -22,7 +26,6 @@ class ArtistCollection
 
         $stmt->execute();
 
-        return $stmt->fetchAll(PDO::FETCH_CLASS);
+        return $stmt->fetchAll(PDO::FETCH_CLASS, Artist::class);
     }
-
 }

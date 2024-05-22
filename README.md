@@ -39,3 +39,8 @@ Ajout des script composer pour faciliter les tests
 
 ##  Configuration de la base de données
 >on creer le fichier .mypdo.ini afin de simplifier la configuration de la base de donnée
+
+## Tests
+composer test:codecept
+>Permet de lancer les tests de codeception
+composer test
