@@ -9,3 +9,12 @@ actor_suffix: Tester
 extensions:
     enabled:
         - Codeception\Extension\RunFailed
+modules:
+    config:
+        Db: # configuration injected into MyPdo in _support/Helper/*.php, if necessary
+            dsn: "sqlite:tests/musiclite.sqlite"
+            user: ""
+            password: ""
+            dump: "tests/_data/musiclite.sql"
+            populate: true
+            cleanup: true

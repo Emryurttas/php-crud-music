@@ -12,7 +12,7 @@ if (!isset($_GET['artistId']) || !is_numeric($_GET['artistId'])) {
     exit;
 }
 
-$artistId = ($_GET['artistId']);
+$artistId = $_GET['artistId'];
 
 $stmt = MyPDO::getInstance()->prepare(
     <<<'SQL'
@@ -46,7 +46,6 @@ $artist = $stmtAlbums->fetch();
 
 if ($artist === false) {
     http_response_code(404);
-    exit;
 }
 
 while (($album = $stmtAlbums->fetch()) !== false) {
