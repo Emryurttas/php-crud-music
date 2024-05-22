@@ -7,49 +7,44 @@ use Html\WebPage;
 
 $webPage = new WebPage();
 
-if (!isset($_GET['artistId']) || !is_numeric($_GET['artistId'])) {
-    header("Location: artist.php", true, 302);
-    exit;
-}
-
 $artistId = $_GET['artistId'];
 
+if(empty($artistId) || !is_numeric($_GET['artistId'])) {
+    header('Location: http://localhost:8000/', true, 302);
+    exit;
+}
 $stmt = MyPDO::getInstance()->prepare(
     <<<'SQL'
-    SELECT name
+    SELECT id, name
     FROM artist
-    WHERE id = ?
+    WHERE id=:id
 SQL
 );
 
-$stmt->execute([$artistId]);
+$stmt->execute(['id' => $artistId]);
 
-$artistName = "nom de l'artiste";
-if ($line = $stmt->fetch()) {
-    $artistName = $webPage->escapeString($line['name']);
+while (($ligne = $stmt->fetch()) !== false) {
+    $nom = $webPage->escapeString($ligne['name']);
+    $webPage->appendContent("<p> Album de $nom\n");
+    $webPage->setTitle("Album de {$ligne['name']}");
 }
 
-$webPage->setTitle("Albums de $artistName");
-$webPage->appendContent("<h1>Albums de $artistName</h1>\n");
-
-$stmtAlbums = MyPDO::getInstance()->prepare(
+$stmt2 = MyPDO::getInstance()->prepare(
     <<<'SQL'
-    SELECT name,year
+    SELECT year,name
     FROM album
-    WHERE artistId = ?
-    ORDER BY year DESC,name
+    WHERE artistId=:id
+    ORDER BY year DESC, name
 SQL
 );
-$stmtAlbums->execute([$artistId]);
+$stmt2->execute(['id' => $artistId]);
 
-$artist = $stmtAlbums->fetch();
+while (($ligne = $stmt2->fetch()) !== false) {
+    $nom = $webPage->escapeString($ligne['name']);
+    $webPage->appendContent("<div>{$ligne['year']} $nom</div>\n");
 
-if ($artist === false) {
+}
+if (!($ligne = $stmt2->fetch())) {
     http_response_code(404);
 }
-
-while (($album = $stmtAlbums->fetch()) !== false) {
-    $webPage->appendContent("<div>{$album['year']} {$album['name']}</div>\n");
-}
-
 echo $webPage->toHTML();
