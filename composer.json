@@ -29,6 +29,9 @@
         "start": "@start:linux",
         "test:cs": "vendor/bin/php-cs-fixer fix --dry-run",
         "fix:cs": "vendor/bin/php-cs-fixer fix",
-        "start:windows": "start /B php -S localhost:8000 -t public"
+        "start:windows": [
+            "Composer\\Config::disableProcessTimeout",
+            "bin/run-server.bat"
+        ]
     }
 }
