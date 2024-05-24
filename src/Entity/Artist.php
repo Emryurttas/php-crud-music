@@ -12,6 +12,8 @@ class Artist
 {
     private int $id;
     private string $name;
+
+
     /**
      * @return int id
      */
@@ -27,7 +29,7 @@ class Artist
         return $this->name;
     }
 
-    public static function findByArtistId(int $id): Artist
+    public static function findById(int $id): Artist
     {
         $stmtArtistId = MyPDO::getInstance()->prepare(
             <<<'SQL'

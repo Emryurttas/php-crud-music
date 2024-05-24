@@ -8,7 +8,7 @@ use Tests\CrudTester;
 
 class ArtistCollectionCest
 {
-    public function findAll(CrudTester $I)
+    public function findAll(CrudTester $I): void
     {
         $expectedArtists = [
             ['id' => 40, 'name' => 'Joe Cocker'],

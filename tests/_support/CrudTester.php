@@ -24,4 +24,5 @@ class CrudTester extends \Codeception\Actor
     /**
      * Define custom actions here
      */
+
 }
