@@ -20,6 +20,7 @@ class Album
     {
         return $this->id;
     }
+
     /**
      * @return string name
      */
@@ -27,6 +28,7 @@ class Album
     {
         return $this->name;
     }
+
     /**
      * @return int year
      */
@@ -34,6 +36,7 @@ class Album
     {
         return $this->year;
     }
+
     /**
      * @return int artistId
      */
@@ -41,6 +44,7 @@ class Album
     {
         return $this->artistId;
     }
+
     /**
      * @return int GenreId
      */
@@ -48,6 +52,7 @@ class Album
     {
         return $this->genreId;
     }
+
     /**
      * @return int coverId
      */

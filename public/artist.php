@@ -29,7 +29,7 @@ while (($ligne = $stmt->fetch()) !== false) {
     $webPage->setTitle("Album de {$ligne['name']}");
 }
 
-$stmt2 = MyPDO::getInstance()->prepare(
+$stmtAlbum = MyPDO::getInstance()->prepare(
     <<<'SQL'
     SELECT year,name
     FROM album
@@ -37,14 +37,14 @@ $stmt2 = MyPDO::getInstance()->prepare(
     ORDER BY year DESC, name
 SQL
 );
-$stmt2->execute(['id' => $artistId]);
+$stmtAlbum->execute(['id' => $artistId]);
 
-while (($ligne = $stmt2->fetch()) !== false) {
+while (($ligne = $stmtAlbum->fetch()) !== false) {
     $nom = $webPage->escapeString($ligne['name']);
     $webPage->appendContent("<div>{$ligne['year']} $nom</div>\n");
 
 }
-if (!($ligne = $stmt2->fetch())) {
+if (!($ligne = $stmtAlbum->fetch())) {
     http_response_code(404);
 }
 echo $webPage->toHTML();
