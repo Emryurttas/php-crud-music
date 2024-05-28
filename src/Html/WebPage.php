@@ -9,6 +9,7 @@ namespace Html;
  *
  * Représente une page web de base avec une section head, un titre et un corps.
  */
+
 class WebPage
 {
     private string $head = "";
@@ -132,22 +133,30 @@ class WebPage
      */
     public function toHTML(): string
     {
-        $html = <<<HTML
-        <!DOCTYPE html>
-        <html lang="fr">
-            <head>
-                <meta charset="UTF-8">
-                $this->head
-                <title>$this->title</title>
-            </head>
+        return <<<HTML
+            <!DOCTYPE html>
+            <html lang="fr">
+                <head>
+                    <meta charset="UTF-8">
+                    {$this->head}
+                    <title>{$this->title}</title>
+                </head>
                 <body>
-                    $this->body
-                    <div id="lastmodified">{$this->getLastModification()}</div>
+                    <header>
+                        <!-- Contenu du header -->
+                    </header>
+                    <main>
+                        {$this->body}
+                    </main>
+                    <footer>
+                        
+                        <div id="lastmodified">{$this->getLastModification()}</div>
+                    </footer>
                 </body>
-        </html>
-HTML;
-        return $html;
+            </html>
+        HTML;
     }
+
 
 
     /**
