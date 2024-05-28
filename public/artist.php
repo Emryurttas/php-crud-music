@@ -2,49 +2,33 @@
 
 declare(strict_types=1);
 
-use Database\MyPdo;
+use Entity\Artist;
 use Html\WebPage;
 
 $webPage = new WebPage();
 
 $artistId = $_GET['artistId'];
 
-if(empty($artistId) || !is_numeric($_GET['artistId'])) {
+if (empty($artistId) || !is_numeric($artistId)) {
     header('Location: http://localhost:8000/', true, 302);
     exit;
 }
-$stmt = MyPDO::getInstance()->prepare(
-    <<<'SQL'
-    SELECT id, name
-    FROM artist
-    WHERE id=:id
-SQL
-);
 
-$stmt->execute(['id' => $artistId]);
+$artist = Artist::findById((int)$artistId);
 
-while (($ligne = $stmt->fetch()) !== false) {
-    $nom = $webPage->escapeString($ligne['name']);
-    $webPage->appendContent("<p> Album de $nom\n");
-    $webPage->setTitle("Album de {$ligne['name']}");
+$artistName = $webPage->escapeString($artist->getName());
+$webPage->appendContent("<p> Album de $artistName</p>\n");
+$webPage->setTitle("Album de $artistName");
+
+$albums = $artist->getAlbums();
+foreach ($albums as $album) {
+    $albumName = $webPage->escapeString($album->getName());
+    $webPage->appendContent("<div>{$album->getYear()} $albumName</div>\n");
 }
 
-$stmtAlbum = MyPDO::getInstance()->prepare(
-    <<<'SQL'
-    SELECT year,name
-    FROM album
-    WHERE artistId=:id
-    ORDER BY year DESC, name
-SQL
-);
-$stmtAlbum->execute(['id' => $artistId]);
-
-while (($ligne = $stmtAlbum->fetch()) !== false) {
-    $nom = $webPage->escapeString($ligne['name']);
-    $webPage->appendContent("<div>{$ligne['year']} $nom</div>\n");
-
-}
-if (!($ligne = $stmtAlbum->fetch())) {
+if (empty($albums)) {
     http_response_code(404);
+    $webPage->appendContent("<p>Aucun album trouvé pour cet artiste.</p>\n");
 }
+
 echo $webPage->toHTML();

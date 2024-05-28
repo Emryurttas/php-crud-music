@@ -6,7 +6,6 @@ use Entity\Album;
 use Entity\Collection\AlbumCollection;
 use Tests\CrudTester;
 
-
 class AlbumCollectionCest
 {
     public function findByArtistId(CrudTester $I): void
