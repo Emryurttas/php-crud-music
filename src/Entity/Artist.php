@@ -44,7 +44,11 @@ class Artist
         if (!$artistData) {
             throw new EntityNotFoundException("Artist $id pas trouvé");
         }
-        return new Artist($artistData['id'], $artistData['name']);
+        $artist = new Artist();
+        $artist->id = $artistData['id'];
+        $artist->name = $artistData['name'];
+
+        return $artist;
     }
     public function getAlbums(): array
     {
