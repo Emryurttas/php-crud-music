@@ -1,0 +1,30 @@
+body {
+    font-family: Arial, sans-serif;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+}
+
+header {
+    text-align: center;
+}
+main {
+    display: flex;
+    flex-direction:column;
+    flex: 1;
+}
+.artist-list{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 3px;
+    text-align: right;
+
+}
+
+.artist-items{
+    display: flex;
+    flex-direction: column;
+}

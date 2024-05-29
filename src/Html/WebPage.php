@@ -142,16 +142,8 @@ class WebPage
                     <title>{$this->title}</title>
                 </head>
                 <body>
-                    <header>
-                        <!-- Contenu du header -->
-                    </header>
-                    <main>
-                        {$this->body}
-                    </main>
-                    <footer>
-                        
-                        <div id="lastmodified">{$this->getLastModification()}</div>
-                    </footer>
+                     {$this->body}
+                     <div id="lastmodified">{$this->getLastModification()}</div>
                 </body>
             </html>
         HTML;
