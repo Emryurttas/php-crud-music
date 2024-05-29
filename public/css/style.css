@@ -1,20 +1,27 @@
+*{
+    box-sizing: border-box;
+}
+
+
 body {
     font-family: Arial, sans-serif;
 }
 
-.container {
+.content {
     display: flex;
     flex-direction: column;
+    border: black solid;
+    overflow-y: scroll;
+    scrollbar-color: rebeccapurple green;
+
 }
 
 header {
     text-align: center;
+    border: black solid;
+    margin-bottom: 4px;
 }
-main {
-    display: flex;
-    flex-direction:column;
-    flex: 1;
-}
+
 .artist-list{
     display: flex;
     flex-direction: column;
@@ -23,8 +30,12 @@ main {
     text-align: right;
 
 }
-
 .artist-items{
     display: flex;
     flex-direction: column;
+    text-align: right;
+}
+footer{
+    border: black solid;
+    margin-top: 4px;
 }
