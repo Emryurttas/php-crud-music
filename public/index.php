@@ -11,16 +11,16 @@ $webPage->setTitle("Mes Musiques");
 
 $webPage->appendContent('<header><h1>' . $webPage->getTitle() . '</h1></header>');
 
-$webPage->appendContent('<main class="content"><ul class="artist-list">');
+$webPage->appendContent('<main class="content"><ul class="list">');
 
 $artists = ArtistCollection::findAll();
 foreach ($artists as $artist) {
     $artistId = $artist->getId();
     $artistName = $webPage->escapeString($artist->getName());
-    $webPage->appendContent("<li class='artist-item'>
-                                        <a class='artist-link' href='artist.php?artistId=$artistId'>
+    $webPage->appendContent("<div class='artist'>
+                                        <a class='artist_item' href='artist.php?artistId=$artistId'>
                                         $artistName</a>
-                                    </li>");
+                                    </div>");
 }
 $webPage->appendContent('</ul></main>');
 

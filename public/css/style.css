@@ -1,41 +1,58 @@
-*{
-    box-sizing: border-box;
+header {
+    border: 1px solid black;
+    padding: 3px;
+    height: 100px;
 }
-
-
 body {
     font-family: Arial, sans-serif;
-}
-
-.content {
+    height: 100vh;
     display: flex;
     flex-direction: column;
-    border: black solid;
-    overflow-y: scroll;
+}
+
+main {
+    display: grid;
+    gap: 5px;
+    overflow-y: auto;
     scrollbar-color: rebeccapurple green;
-
-}
-
-header {
+    width: 99%;
+    flex-grow: 1;
+    scrollbar-width: thin;
     text-align: center;
-    border: black solid;
-    margin-bottom: 4px;
 }
 
-.artist-list{
+.artist {
     display: flex;
     flex-direction: column;
-    align-items: center;
-    gap: 3px;
-    text-align: right;
+    padding: 20px;
+    border:1px solid black;
+    margin: 5px;
+    text-align: left;
+}
+.artist-item{
+    display: flex;
+    border: 1px black;
+}
 
-}
-.artist-items{
+.album {
     display: flex;
-    flex-direction: column;
-    text-align: right;
+    flex-direction: row;
+    border: 1px solid black;
+    margin: 10px;
+    padding: 10px;
 }
-footer{
-    border: black solid;
-    margin-top: 4px;
+
+.album__year {
+    font-weight: bold;
+}
+
+.album__name {
+    margin-left: 10px;
+}
+
+footer {
+    display: flex;
+    border: 1px solid black;
+    padding: 15px;
+    margin-top: 5px;
 }

@@ -21,8 +21,6 @@ class AppWebPage extends WebPage
                     <title>{$this->getTitle()}</title>
                 </head>
                 <body>
-                    <header>
-                    </header>
                     <main>
                         {$this->getBody()}
                     </main>
