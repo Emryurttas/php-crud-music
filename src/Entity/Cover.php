@@ -3,12 +3,8 @@
 namespace Entity;
 
 use Database\MyPdo;
+use Entity\Exception\EntityNotFoundException;
 use PDO;
-use Exception;
-
-class EntityNotFoundException extends Exception
-{
-}
 
 class Cover
 {
@@ -41,7 +37,7 @@ class Cover
      *
      * @param int $id
      * @return Cover
-     * @throws EntityNotFoundException
+     * @throws \Entity\Exception\EntityNotFoundException
      */
     public static function findById(int $id): Cover
     {
@@ -61,7 +57,6 @@ class Cover
         $cover = new Cover();
         $cover->id = $coverData['id'];
         $cover->jpeg = $coverData['jpeg'];
-
         return $cover;
     }
 }

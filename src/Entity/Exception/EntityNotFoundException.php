@@ -1,6 +1,6 @@
 <?php
 
-namespace Entity;
+namespace Entity\Exception;
 
 class EntityNotFoundException extends \OutOfBoundsException
 {

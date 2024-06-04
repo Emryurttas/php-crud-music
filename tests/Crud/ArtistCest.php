@@ -1,9 +1,8 @@
 <?php
 
 namespace Tests\Crud;
-
 use Entity\Artist;
-use Entity\EntityNotFoundException;
+use Entity\Exception\EntityNotFoundException;
 use Tests\CrudTester;
 
 class ArtistCest
@@ -17,7 +16,7 @@ class ArtistCest
 
     public function findByIdThrowsExceptionIfArtistDoesNotExist(CrudTester $I): void
     {
-        $I->expectThrowable(EntityNotFoundException::class, function () {
+        $I->expectThrowable(\Entity\Exception\EntityNotFoundException::class, function () {
             Artist::findById(PHP_INT_MAX);
         });
     }

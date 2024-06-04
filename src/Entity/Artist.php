@@ -7,6 +7,7 @@ namespace Entity;
 use Database\MyPdo;
 use Entity\Collection\AlbumCollection;
 use PDO;
+use Entity\Exception\EntityNotFoundException;
 
 class Artist
 {
