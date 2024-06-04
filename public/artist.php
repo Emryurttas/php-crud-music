@@ -17,8 +17,10 @@ if (empty($artistId) || !is_numeric($artistId)) {
 $artist = Artist::findById((int)$artistId);
 
 $webPage->setTitle($webPage->escapeString($artist->getName()));
+
 $webPage->appendContent('<header class="header"><h1>' . $webPage->escapeString($artist->getName()) . '</h1></header>');
 $webPage->appendContent('<main class="content"><ul class="list">');
+
 
 $albums = $artist->getAlbums();
 foreach ($albums as $album) {
