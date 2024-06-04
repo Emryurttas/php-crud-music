@@ -6,7 +6,9 @@ use Database\MyPdo;
 use PDO;
 use Exception;
 
-class EntityNotFoundException extends Exception {}
+class EntityNotFoundException extends Exception
+{
+}
 
 class Cover
 {
@@ -14,7 +16,9 @@ class Cover
     private string $jpeg;
 
     // Constructeur privé
-    private function __construct() {}
+    private function __construct()
+    {
+    }
 
     /**
      * @return int
