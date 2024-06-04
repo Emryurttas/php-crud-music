@@ -10,32 +10,39 @@ $webPage = new AppWebPage();
 $artistId = $_GET['artistId'];
 
 if (empty($artistId) || !is_numeric($artistId)) {
-    header('Location: http://localhost:8000/', true, 302);
+    header('Location: index.php', true, 302);
     exit;
 }
 
-$artist = Artist::findById((int)$artistId);
+try {
+    $artist = Artist::findById((int)$artistId);
 
-$webPage->setTitle($webPage->escapeString($artist->getName()));
+    $artistName = $webPage->escapeString($artist->getName());
+    $pageTitle = "Albums de " . $artistName;
 
-$webPage->appendContent('<header class="header"><h1>' . $webPage->escapeString($artist->getName()) . '</h1></header>');
-$webPage->appendContent('<main class="content"><ul class="list">');
+    $webPage->setTitle($pageTitle);
+    $webPage->appendContent('<header class="header"><h1>' . $pageTitle . '</h1></header>');
+    $webPage->appendContent('<main class="content"><ul class="list">');
 
+    $albums = $artist->getAlbums();
+    foreach ($albums as $album) {
+        $albumName = $webPage->escapeString($album->getName());
+        $webPage->appendContent("<li class='album'>
+                                            <span class='album__year'>{$album->getYear()} </span>
+                                            <span class='album__name'>$albumName</span>
+                                        </li>\n");
+    }
 
-$albums = $artist->getAlbums();
-foreach ($albums as $album) {
-    $albumName = $webPage->escapeString($album->getName());
-    $webPage->appendContent("<li class='album'>
-                                        <span class='album__year'>{$album->getYear()} </span>
-                                        <span class='album__name'>$albumName</span>
-                                    </li>\n");
+    $webPage->appendContent('</ul></main>');
+    $webPage->appendContent('<footer class="footer"></footer>');
+
+    if (empty($albums)) {
+        http_response_code(404);
+        exit;
+    }
+
+    echo $webPage->toHTML();
+} catch (Exception $e) {
+    header('Location: error.php', true, 302);
+    exit;
 }
-
-if (empty($albums)) {
-    http_response_code(404);
-    $webPage->appendContent("<p>Aucun album trouvé pour cet artiste.</p>\n");
-}
-
-$webPage->appendContent('</ul></main>');
-
-echo $webPage->toHTML();
