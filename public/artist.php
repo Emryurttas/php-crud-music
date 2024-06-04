@@ -34,7 +34,7 @@ try {
     }
 
     $webPage->appendContent('</ul></main>');
-    $webPage->appendContent('<footer class="footer"></footer>');
+    $webPage->appendContent('<footer class="footer">' . $webPage->getLastModification() . '</footer>');
 
     if (empty($albums)) {
         http_response_code(404);

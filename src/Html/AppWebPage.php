@@ -24,9 +24,6 @@ class AppWebPage extends WebPage
                     <main>
                         {$this->getBody()}
                     </main>
-                    <footer>
-                        <div id="lastmodified">{$this->getLastModification()}</div>
-                    </footer>
                 </body>
             </html>
         HTML;

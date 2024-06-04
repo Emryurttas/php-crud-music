@@ -18,5 +18,5 @@ foreach ($artists as $artist) {
     $webPage->appendContent("<li class='artist'><a class='artist_item' href='artist.php?artistId=$artistId'>$artistName</a></li>");
 }
 $webPage->appendContent('</ul></main>');
-$webPage->appendContent('<footer class="footer"></footer>');
+$webPage->appendContent('<footer class="footer">' . $webPage->getLastModification() . '</footer>');
 echo $webPage->toHTML();
