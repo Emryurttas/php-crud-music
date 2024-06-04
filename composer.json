@@ -39,7 +39,14 @@
             "bin/run-server.bat"
         ],
         "test:crud": "php vendor/bin/codecept run Crud",
-        "test:codecept":"vendor/bin/codecept run",
-        "test": "@test:codecept"
+        "test:codecept":[
+            "php vendor/bin/codecept clean",
+            "vendor/bin/codecept run"
+        ],
+        "test": "@test:codecept",
+        "test:browse": [
+            "rm -rf tests/_output/*",
+            "php vendor/bin/codecept run Browse"
+        ]
     }
 }
