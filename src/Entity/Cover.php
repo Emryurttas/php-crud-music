@@ -11,7 +11,6 @@ class Cover
     private int $id;
     private string $jpeg;
 
-    // Constructeur privé
     private function __construct()
     {
     }
@@ -37,7 +36,7 @@ class Cover
      *
      * @param int $id
      * @return Cover
-     * @throws \Entity\Exception\EntityNotFoundException
+     * @throws EntityNotFoundException
      */
     public static function findById(int $id): Cover
     {

@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace Database;
 
+use PDOException;
+
 /**
  * Classe permettant de retourner une instance unique et configurée de PDO.
  *
@@ -101,7 +103,7 @@ final class MyPdo extends \PDO
      *
      * @return self Instance unique de MyPdo
      *
-     * @throws \PDOException Si la configuration n'a pas été effectuée
+     * @throws PDOException Si la configuration n'a pas été effectuée
      */
     public static function getInstance(): self
     {
@@ -111,7 +113,7 @@ final class MyPdo extends \PDO
             if (!self::hasConfiguration()
                 && !self::setConfigurationFromEnvironmentVariables()
                 && !self::setConfigurationFromIniFile()) {
-                throw new \PDOException(__CLASS__.': Configuration not set');
+                throw new PDOException(__CLASS__.': Configuration not set');
             }
             // Construire une instance
             self::$myPdoInstance = new self(self::$dsn, self::$username, self::$password, self::$options);
@@ -128,7 +130,7 @@ final class MyPdo extends \PDO
      * @param string $password Mot de passe pour la connexion BD
      * @param array  $options  Options du pilote BD
      *
-     * @throws \PDOException Si la variable d'environnement APP_DIR est utilisée, mais n'est pas définie
+     * @throws PDOException Si la variable d'environnement APP_DIR est utilisée, mais n'est pas définie
      */
     public static function setConfiguration(
         string $dsn,
@@ -144,7 +146,7 @@ final class MyPdo extends \PDO
         // Remplacer %APP_DIR% par le chemin de l'application si SQLite est utilisé
         if (preg_match('/^(.*)(%APP_DIR%)(.*)$/', $dsn, $matches)) {
             if (!($appDir = getenv('APP_DIR'))) {
-                throw new \PDOException(__CLASS__.': APP_DIR environment variable not set');
+                throw new PDOException(__CLASS__.': APP_DIR environment variable not set');
             }
             self::$dsn = $matches[1].$appDir.$matches[3];
         }
@@ -168,7 +170,7 @@ final class MyPdo extends \PDO
      *
      * @return bool Vrai si la configuration a été trouvée
      *
-     * @throws \PDOException Si self::setConfiguration() échoue
+     * @throws PDOException Si self::setConfiguration() échoue
      */
     private static function setConfigurationFromEnvironmentVariables(): bool
     {
@@ -203,7 +205,7 @@ final class MyPdo extends \PDO
      *
      * @return bool Vrai si la configuration a été trouvée
      *
-     * @throws \PDOException Si le fichier des paramètres est invalide
+     * @throws PDOException Si le fichier des paramètres est invalide
      */
     private static function setConfigurationFromIniFile(): bool
     {
@@ -217,10 +219,10 @@ final class MyPdo extends \PDO
         $parameters = @parse_ini_file($parameterFile, true);
         if (false !== $parameters) {
             if (!isset($parameters['mypdo'])) {
-                throw new \PDOException('`mypdo` section not found in `'.basename($parameterFile).'`');
+                throw new PDOException('`mypdo` section not found in `'.basename($parameterFile).'`');
             }
             if (!isset($parameters['mypdo']['dsn'])) {
-                throw new \PDOException('`dsn` not found in `'.basename($parameterFile).'`');
+                throw new PDOException('`dsn` not found in `'.basename($parameterFile).'`');
             }
             $dsn = $parameters['mypdo']['dsn'];
             // username et password facultatifs

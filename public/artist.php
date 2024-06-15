@@ -7,21 +7,21 @@ use Html\AppWebPage;
 
 $webPage = new AppWebPage();
 
-$artistId = $_GET['artistId'];
 
-if (empty($artistId) || !is_numeric($artistId)) {
-    header('Location: index.php', true, 302);
-    exit;
-}
 
 try {
+    $artistId = $_GET['artistId'];
+
+    if (empty($artistId) || !is_numeric($artistId)) {
+        header('Location: index.php', true, 302);
+        exit;
+    }
+    $webPage->appendCssUrl('/css/style.css');
     $artist = Artist::findById((int)$artistId);
 
     $artistName = $webPage->escapeString($artist->getName());
     $pageTitle = "Albums de " . $artistName;
-
     $webPage->setTitle($pageTitle);
-    $webPage->appendContent('<header class="header"><h1>' . $pageTitle . '</h1></header>');
     $webPage->appendContent('<main class="content"><ul class="list">');
 
     $albums = $artist->getAlbums();
@@ -34,7 +34,6 @@ try {
     }
 
     $webPage->appendContent('</ul></main>');
-    $webPage->appendContent('<footer class="footer">' . $webPage->getLastModification() . '</footer>');
 
     if (empty($albums)) {
         http_response_code(404);
