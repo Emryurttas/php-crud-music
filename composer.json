@@ -45,7 +45,6 @@
         ],
         "test": "@test:codecept",
         "test:browse": [
-            "rm -rf tests/_output/*",
             "php vendor/bin/codecept run Browse"
         ]
     }

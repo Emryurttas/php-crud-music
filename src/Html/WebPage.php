@@ -143,7 +143,6 @@ class WebPage
                 </head>
                 <body>
                      {$this->body}
-                     <div id="lastmodified">{$this->getLastModification()}</div>
                 </body>
             </html>
         HTML;

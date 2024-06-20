@@ -4,8 +4,6 @@ declare(strict_types=1);
 
 namespace Html;
 
-use Html\WebPage;
-
 class AppWebPage extends WebPage
 {
     public function __construct(string $title = '')

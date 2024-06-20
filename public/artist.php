@@ -21,7 +21,7 @@ try {
 
     $artistName = $webPage->escapeString($artist->getName());
     $pageTitle = "Albums de " . $artistName;
-    $webPage->setTitle($pageTitle);
+    $webPage->setTitle('<h1>' . $pageTitle . '</h1>');
     $webPage->appendContent('<main class="content"><ul class="list">');
 
     $albums = $artist->getAlbums();
