@@ -44,18 +44,14 @@ class Cover
             <<<'SQL'
             SELECT id, jpeg
             FROM cover
-            WHERE id = :id
+            WHERE id = ?
             SQL
         );
-        $stmtCoverId->execute(['id' => $id]);
-        $coverData = $stmtCoverId->fetch(PDO::FETCH_ASSOC);
+        $stmtCoverId->execute([$id]);
 
-        if (!$coverData) {
-            throw new EntityNotFoundException("Cover $id pas trouvé");
+        if (($poster = $stmtCoverId->fetchObject(Cover::class))===false) {
+            throw new EntityNotFoundException("Le poster {$id} n'\est pas trouvé");
         }
-        $cover = new Cover();
-        $cover->id = $coverData['id'];
-        $cover->jpeg = $coverData['jpeg'];
-        return $cover;
+        return $poster;
     }
 }
