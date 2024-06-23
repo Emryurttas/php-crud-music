@@ -5,7 +5,7 @@ declare(strict_types=1);
 use Entity\Cover;
 use Entity\Exception\EntityNotFoundException;
 
-$id = $_GET['coverId'];
+$id = $_GET['id'];
 
 try {
     if (empty($id) || !is_numeric($id)) {
@@ -19,9 +19,6 @@ try {
         throw new EntityNotFoundException('Image not found');
     }
 
-    header("Content-Type: image/jpeg");
-    echo $image;
-
 } catch (InvalidArgumentException) {
     http_response_code(400);
     exit;
@@ -34,3 +31,6 @@ try {
     http_response_code(500);
     exit;
 }
+
+header("Content-Type: image/jpeg");
+echo $image;
