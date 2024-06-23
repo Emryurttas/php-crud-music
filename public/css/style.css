@@ -1,25 +1,24 @@
-header {
+.header {
     border: 1px solid black;
     padding: 3px;
     height: 100px;
 }
 body {
     font-family: Arial, sans-serif;
-    height: 100vh;
     display: flex;
     flex-direction: column;
+    min-height: 100vh;
 }
 
-
-main {
+.content {
     display: grid;
     gap: 5px;
     overflow-y: auto;
-    scrollbar-color: rebeccapurple green;
+    scrollbar-color: red blue;
     width: 99%;
-    flex-grow: 1;
     scrollbar-width: thin;
     text-align: center;
+    height: 100vh;
 }
 
 .artist {
@@ -51,11 +50,12 @@ main {
     margin-left: 10px;
 }
 
-footer {
+.footer {
     display: flex;
     border: 1px solid black;
     padding: 15px;
     margin-top: 5px;
+    justify-content: center;
 }
 h1{
     color: red;
