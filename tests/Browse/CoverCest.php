@@ -9,7 +9,7 @@ class CoverCest
 {
     public function loadCoverWithoutParameter(BrowseTester $I): void
     {
-        $I->amOnPage('/cover.php');
+        $I->amOnPage('http://localhost:8000/Cover.php');
         $I->seeResponseCodeIs(400);
     }
 
@@ -18,7 +18,7 @@ class CoverCest
      */
     public function loadCoverWithWrongParameter(BrowseTester $I, Example $example): void
     {
-        $I->amOnPage('/cover.php?coverId='.$example['id']);
+        $I->amOnPage('http://localhost:8000/Cover.php?coverId='.$example['id']);
         $I->seeResponseCodeIs($example['response']);
     }
 
@@ -33,7 +33,7 @@ class CoverCest
 
     public function loadCoverWithCorrectParameter(BrowseTester $I): void
     {
-        $I->amOnPage('/cover.php?coverId=411');
+        $I->amOnPage('http://localhost:8000/Cover.php?coverId=411');
         $I->seeResponseCodeIs(200);
         $I->haveHttpHeader('Content-Type', 'image/jpeg');
         $I->seeResponseContentIs(file_get_contents(codecept_data_dir().'/cover/cover411.jpeg'));
