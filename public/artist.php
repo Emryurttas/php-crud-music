@@ -3,11 +3,10 @@
 declare(strict_types=1);
 
 use Entity\Artist;
+use Entity\Exception\EntityNotFoundException;
 use Html\AppWebPage;
 
 $webPage = new AppWebPage();
-
-
 
 try {
     $artistId = $_GET['artistId'];
@@ -16,32 +15,38 @@ try {
         header('Location: index.php', true, 302);
         exit;
     }
-    $webPage->appendCssUrl('/css/style.css');
-    $artist = Artist::findById((int)$artistId);
+
+    try {
+        $artist = Artist::findById((int)$artistId);
+    } catch (EntityNotFoundException) {
+        http_response_code(404);
+        exit;
+    }
 
     $artistName = $webPage->escapeString($artist->getName());
     $pageTitle = "Albums de " . $artistName;
-    $webPage->setTitle('<h1>' . $pageTitle . '</h1>');
-    $webPage->appendContent('<main class="content"><ul class="list">');
+
+    $webPage->setTitle($pageTitle);
+
+    $webPage->appendContent('<ul class="list">');
 
     $albums = $artist->getAlbums();
     foreach ($albums as $album) {
         $albumName = $webPage->escapeString($album->getName());
         $webPage->appendContent("<li class='album'>
-                                            <span class='album__year'>{$album->getYear()} </span>
-                                            <span class='album__name'>$albumName</span>
-                                        </li>\n");
+                                    <span class='album__year'>{$album->getYear()}</span>
+                                    <span class='album__name'>$albumName</span>
+                                </li>\n");
     }
-
-    $webPage->appendContent('</ul></main>');
-
-    if (empty($albums)) {
-        http_response_code(404);
-        exit;
-    }
+    $webPage->appendContent('</ul>');
 
     echo $webPage->toHTML();
-} catch (Exception $e) {
-    header('Location: error.php', true, 302);
+
+} catch (EntityNotFoundException $e) {
+    http_response_code(404);
+    echo 'Artist not found';
+    exit;
+} catch (Exception) {
+    http_response_code(500);
     exit;
 }
