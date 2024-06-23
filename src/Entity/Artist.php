@@ -82,4 +82,22 @@ class Artist
     {
         return AlbumCollection::findByArtistId($this->id);
     }
+    /**
+     * @throws ParameterException
+     */
+    public function delete():Artist
+    {
+        if ($this->id === null){
+            throw new ParameterException("on ne peut pas supprimer un artist pas enregistré");
+        }
+        $stmtDelete = MyPdo::getInstance()->prepare(
+            <<<'SQL'
+            DELETE FROM ARTIST
+            WHERE id = ?
+            SQL
+        );
+        $stmtDelete->execute([$this->id]);
+        $this->id = null;
+        return $this;
+    }
 }
