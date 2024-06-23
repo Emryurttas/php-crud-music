@@ -57,6 +57,13 @@ class Artist
         $this->name = $name;
     }
 
+    /**
+     * Trouve un artiste par son ID.
+     *
+     * @param int $id L'ID de l'artiste à rechercher.
+     * @return Artist L'objet Artist correspondant.
+     * @throws EntityNotFoundException Si aucun artiste n'est trouvé avec l'ID donné.
+     */
     public static function findById(int $id): Artist
     {
         $stmtArtistId = MyPDO::getInstance()->prepare(
@@ -78,12 +85,21 @@ class Artist
 
         return $artist;
     }
+
+    /**
+     * Récupère la liste des albums associés à cet artiste.
+     *
+     * @return array La liste des albums de cet artiste.
+     */
     public function getAlbums(): array
     {
         return AlbumCollection::findByArtistId($this->id);
     }
     /**
-     * @throws ParameterException
+     * Supprime cet artiste de la base de données.
+     *
+     * @return Artist L'instance actuelle de l'artiste après suppression.
+     * @throws ParameterException Si l'ID de l'artiste est null, donc non enregistré.
      */
     public function delete():Artist
     {
