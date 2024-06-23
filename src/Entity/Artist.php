@@ -6,28 +6,55 @@ namespace Entity;
 
 use Database\MyPdo;
 use Entity\Collection\AlbumCollection;
+use Entity\Exception\ParameterException;
 use PDO;
 use Entity\Exception\EntityNotFoundException;
 
 class Artist
 {
-    private int $id;
+    private ?int $id = null;
     private string $name;
 
-
     /**
-     * @return int id
+     * Récupère l'ID de l'entité.
+     *
+     * @return int|null L'ID de l'entité, ou null si non défini.
      */
-    public function getId(): int
+    public function getId(): ?int
     {
         return $this->id;
     }
+
     /**
-     * @return string Name
+     * Définit l'ID de l'entité.
+     *
+     * @param int|null $id L'ID à définir, peut être null.
+     * @return void
+     */
+    private function setId(?int $id): void
+    {
+        $this->id = $id;
+    }
+
+    /**
+     * Récupère le nom de l'entité.
+     *
+     * @return string Le nom de l'entité.
      */
     public function getName(): string
     {
         return $this->name;
+    }
+
+    /**
+     * Définit le nom de l'entité.
+     *
+     * @param string $name Le nom à définir.
+     * @return void
+     */
+    public function setName(string $name): void
+    {
+        $this->name = $name;
     }
 
     public static function findById(int $id): Artist
@@ -55,5 +82,4 @@ class Artist
     {
         return AlbumCollection::findByArtistId($this->id);
     }
-
 }
