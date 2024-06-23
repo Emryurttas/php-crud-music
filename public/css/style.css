@@ -43,10 +43,15 @@ body {
 }
 
 .album__year {
+    display: flex;
+    justify-content: flex-start;
     font-weight: bold;
+
 }
 
-.album__name {
+.album__info{
+    display: flex;
+    flex-direction: column;
     margin-left: 10px;
 }
 

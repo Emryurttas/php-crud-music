@@ -3,6 +3,7 @@
 declare(strict_types=1);
 
 use Entity\Artist;
+use Entity\Cover;
 use Entity\Exception\EntityNotFoundException;
 use Html\AppWebPage;
 
@@ -18,8 +19,9 @@ try {
 
     try {
         $artist = Artist::findById((int)$artistId);
-    } catch (EntityNotFoundException) {
+    } catch (EntityNotFoundException $e) {
         http_response_code(404);
+        echo 'Artist not found';
         exit;
     }
 
@@ -33,11 +35,27 @@ try {
     $albums = $artist->getAlbums();
     foreach ($albums as $album) {
         $albumName = $webPage->escapeString($album->getName());
+        $coverId = $album->getCoverId();
+
+        try {
+            $poster = Cover::findById((int)$coverId);
+            $albumPosterUrl = "cover.php?id=" . $poster->getId();
+        } catch (EntityNotFoundException $e) {
+            $albumPosterUrl = '';
+        }
+
+        $link = "cover.php?coverId=$coverId";
         $webPage->appendContent("<li class='album'>
-                                    <span class='album__year'>{$album->getYear()}</span>
-                                    <span class='album__name'>$albumName</span>
-                                </li>\n");
+                                    <a class='album_link' href='$link'>
+                                        <img src='$albumPosterUrl' alt='Poster de $albumName'/>
+                                    </a>
+                                    <div class='album__info'>
+                                        <div class='album__year'>{$album->getYear()}</div>
+                                        <div class='album__name'>$albumName</div>
+                                    </div>
+                                 </li>\n");
     }
+
     $webPage->appendContent('</ul>');
 
     echo $webPage->toHTML();
@@ -46,7 +64,7 @@ try {
     http_response_code(404);
     echo 'Artist not found';
     exit;
-} catch (Exception) {
+} catch (Exception $e) {
     http_response_code(500);
     exit;
 }
