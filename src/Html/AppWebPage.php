@@ -9,6 +9,8 @@ class AppWebPage extends WebPage
     public function __construct(string $title = '')
     {
         parent::__construct($title);
+        $this->appendCssUrl("/css/style.css");
+
     }
 
     public function toHTML(): string
@@ -21,7 +23,6 @@ class AppWebPage extends WebPage
                     {$this->getHead()}
                     <title>{$this->getTitle()}</title>
                   </head>
-                  
                   <body>
                     <header class='header'>
                         <h1>{$this->getTitle()}</h1>
@@ -35,4 +36,7 @@ class AppWebPage extends WebPage
                   </body> 
                  </html>";
     }
+
+
+
 }
