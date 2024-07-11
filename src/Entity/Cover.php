@@ -4,7 +4,6 @@ namespace Entity;
 
 use Database\MyPdo;
 use Entity\Exception\EntityNotFoundException;
-use PDO;
 
 class Cover
 {
@@ -49,7 +48,7 @@ class Cover
         );
         $stmtCoverId->execute([$id]);
 
-        if (($poster = $stmtCoverId->fetchObject(Cover::class))===false) {
+        if (($poster = $stmtCoverId->fetchObject(Cover::class)) === false) {
             throw new EntityNotFoundException("Le poster {$id} n'\est pas trouvé");
         }
         return $poster;
