@@ -116,4 +116,30 @@ class Artist
         $this->id = null;
         return $this;
     }
+
+    /**
+     * Sauvegarde les modifications apportées à l'artiste dans la base de données.
+     *
+     * Cette méthode met à jour le nom de l'artiste dans la base de données s'il existe déjà.
+     *
+     * @throws ParameterException Si l'identifiant de l'artiste (`$this->id`) est nul, une exception est lancée.
+     *
+     * @return Artist L'instance de l'objet Artist après avoir effectué la mise à jour.
+     */
+    public function save():Artist
+    {
+        if ($this->id === null) {
+            throw new ParameterException("on ne peut pas modifier un artist qui n'existe pas");
+        }
+        $stmtSave = MyPdo::getInstance()->prepare(
+            <<<'SQL'
+            UPDATE ARTIST
+            SET name = :name
+            WHERE id = :id
+            SQL
+        );
+        $stmtSave->execute(['id'=>$this->id,
+                            'name'=>$this->name]);
+        return $this;
+    }
 }
