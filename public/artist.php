@@ -54,7 +54,7 @@ try {
                                                 <div class='album__name'>$albumName</div>
                                             </div>
                                         </li>");
-                                        }
+    }
 
     $webPage->appendContent('</ul>');
 

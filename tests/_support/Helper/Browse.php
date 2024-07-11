@@ -12,7 +12,7 @@ class Browse extends \Codeception\Module
     /**
      * @throws ModuleException
      */
-    public function seeResponseContentIs(string $expected, string $message='Response content does not match'): void
+    public function seeResponseContentIs(string $expected, string $message = 'Response content does not match'): void
     {
         $this->assertEquals($expected, $this->getModule('PhpBrowser')->_getResponseContent(), $message);
     }
