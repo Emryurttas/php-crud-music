@@ -4,6 +4,7 @@ namespace Tests\Crud;
 
 use Entity\Artist;
 use Entity\Exception\EntityNotFoundException;
+use Entity\Exception\ParameterException;
 use Tests\CrudTester;
 
 class ArtistCest
@@ -20,5 +21,18 @@ class ArtistCest
         $I->expectThrowable(\Entity\Exception\EntityNotFoundException::class, function () {
             Artist::findById(PHP_INT_MAX);
         });
+    }
+
+    /**
+     * @throws ParameterException
+     */
+    public function delete(CrudTester $I): void
+    {
+        $artist = Artist::findById(4);
+        $artist->delete();
+        $I->cantSeeInDatabase('artist', ['id' => 4]);
+        $I->cantSeeInDatabase('artist', ['name' => 'Slipknot']);
+        $I->assertNull($artist->getId());
+        $I->assertSame('Slipknot', $artist->getName());
     }
 }
