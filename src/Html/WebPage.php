@@ -12,6 +12,7 @@ namespace Html;
 
 class WebPage
 {
+    use StringEscaper;
     private string $head = "";
     private string $title = "";
     private string $body = "";

@@ -3,9 +3,11 @@
 namespace Html\Form;
 
 use Entity\Artist;
+use Html\StringEscaper;
 
 class ArtistForm
 {
+    use StringEscaper;
     private ?Artist $artist;
 
     /**
@@ -37,9 +39,7 @@ class ArtistForm
     public function getHtmlForm(string $action): string
     {
         $id = $this->artist?->getId() ?? '';
-        $name = htmlspecialchars($this->artist?->getName() ?? '', ENT_QUOTES | ENT_HTML5);
-
-        // Génération du formulaire HTML
+        $name = $this->artist ? htmlspecialchars($this->artist->getName(), ENT_QUOTES | ENT_HTML5) : '';
         return <<<HTML
             <form action="$action" method="post">
                 <input type="hidden" name="artist_id" value="$id">
