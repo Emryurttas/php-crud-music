@@ -183,4 +183,20 @@ class Artist
         $this->id = (int)MyPdo::getInstance()->lastInsertId();
         return $this;
     }
+    /**
+     * Déclenche l'insertion ou la mise à jour de l'artiste en fonction de l'identifiant.
+     * Retourne l'instance courante pour permettre le chaînage des méthodes.
+     *
+     * @return Artist L'instance courante de l'objet Artist.
+     *
+     * @throws ParameterException Si l'identifiant est nul et que l'artiste ne peut pas être modifié.
+     */
+    public function save(): Artist
+    {
+        if ($this->id === null) {
+            return $this->insert();
+        } else {
+            return $this->update();
+        }
+    }
 }
