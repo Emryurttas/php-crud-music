@@ -5,7 +5,7 @@ declare(strict_types=1);
 use Entity\Cover;
 use Entity\Exception\EntityNotFoundException;
 
-$id = $_GET['id'];
+$id = $_GET['coverId'];
 
 try {
     if (empty($id) || !is_numeric($id)) {
