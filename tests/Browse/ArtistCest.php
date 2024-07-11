@@ -9,7 +9,7 @@ class ArtistCest
 {
     public function checkAppWebPageHtmlStructure(BrowseTester $I): void
     {
-        $I->amOnPage('http://localhost:8000/artist.php?artistId=4');
+        $I->amOnPage('/artist.php?artistId=4');
         $I->seeResponseCodeIs(200);
         $I->seeElement('.header');
         $I->seeElement('.header h1');
@@ -20,7 +20,7 @@ class ArtistCest
     public function loadArtistPageWithoutParameter(BrowseTester $I): void
     {
         $I->stopFollowingRedirects();
-        $I->amOnPage('http://localhost:8000/artist.php');
+        $I->amOnPage('/artist.php');
         $I->seeResponseCodeIsRedirection();
         $I->followRedirect();
         $I->seeInCurrentUrl('/index.php');
@@ -32,7 +32,7 @@ class ArtistCest
     public function loadArtistPageWithWrongParameter(BrowseTester $I, Example $example): void
     {
         $I->stopFollowingRedirects();
-        $I->amOnPage('http://localhost:8000/artist.php?artistId='.$example['id']);
+        $I->amOnPage('/artist.php?artistId='.$example['id']);
         $I->seeResponseCodeIsRedirection();
         $I->followRedirect();
         $I->seeInCurrentUrl('/index.php');
@@ -48,13 +48,13 @@ class ArtistCest
 
     public function loadArtistPageWithUnknownArtistId(BrowseTester $I): void
     {
-        $I->amOnPage('http://localhost:8000/artist.php?artistId='.PHP_INT_MAX);
+        $I->amOnPage('/artist.php?artistId='.PHP_INT_MAX);
         $I->seeResponseCodeIs(404);
     }
 
     public function loadArtistAndAlbumsWithCorrectParameter(BrowseTester $I): void
     {
-        $I->amOnPage('http://localhost:8000/artist.php?artistId=17');
+        $I->amOnPage('/artist.php?artistId=17');
         $I->seeResponseCodeIs(200);
         $I->seeInTitle('Albums de Metallica', '.header h1');
         $I->see('Albums de Metallica', '.header h1');
