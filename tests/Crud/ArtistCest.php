@@ -47,4 +47,17 @@ class ArtistCest
         $I->assertSame(4, $artist->getId());
         $I->assertSame('Nœud Coulant', $artist->getName());
     }
+    public function createWithoutId(CrudTester $I): void
+    {
+        $artist = Artist::create('Nœud Coulant');
+        $I->assertNull($artist->getId());
+        $I->assertSame('Nœud Coulant', $artist->getName());
+    }
+
+    public function createWithId(CrudTester $I): void
+    {
+        $artist = Artist::create('Nœud Coulant', 4);
+        $I->assertSame(4, $artist->getId());
+        $I->assertSame('Nœud Coulant', $artist->getName());
+    }
 }

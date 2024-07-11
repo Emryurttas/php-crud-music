@@ -15,6 +15,10 @@ class Artist
     private ?int $id = null;
     private string $name;
 
+    private function __construct()
+    {
+    }
+
     /**
      * Récupère l'ID de l'entité.
      *
@@ -141,5 +145,23 @@ class Artist
         $stmtSave->execute(['id'=>$this->id,
                             'name'=>$this->name]);
         return $this;
+    }
+    /**
+     * Crée une nouvelle instance de l'artiste avec les données fournies.
+     * Si un identifiant est fourni, il est affecté à l'instance.
+     *
+     * @param string $name Le nom de l'artiste.
+     * @param int|null $id (Facultatif) L'identifiant de l'artiste.
+     *
+     * @return Artist L'instance de l'objet Artist créée.
+     */
+    public static function create(string $name, ?int $id = null): Artist
+    {
+        $artist = new Artist();
+        $artist->setName($name);
+        if ($id !== null) {
+            $artist->setId($id);
+        }
+        return $artist;
     }
 }
