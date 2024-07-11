@@ -46,15 +46,15 @@ try {
 
         $link = "cover.php?coverId=$coverId";
         $webPage->appendContent("<li class='album'>
-                                    <a class='album_link' href='$link'>
-                                        <img src='$albumPosterUrl' alt='Poster de $albumName'/>
-                                    </a>
-                                    <div class='album__info'>
-                                        <div class='album__year'>{$album->getYear()}</div>
-                                        <div class='album__name'>$albumName</div>
-                                    </div>
-                                 </li>\n");
-    }
+                                            <a class='album_link' href='$link'>
+                                                <img src='$link' alt='Poster de $albumName'/>
+                                            </a>
+                                            <div class='album__info'>
+                                                <div class='album__year'>{$album->getYear()}</div>
+                                                <div class='album__name'>$albumName</div>
+                                            </div>
+                                        </li>");
+                                        }
 
     $webPage->appendContent('</ul>');
 
