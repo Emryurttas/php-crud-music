@@ -130,7 +130,7 @@ class Artist
      *
      * @return Artist L'instance de l'objet Artist après avoir effectué la mise à jour.
      */
-    public function save():Artist
+    public function update():Artist
     {
         if ($this->id === null) {
             throw new ParameterException("on ne peut pas modifier un artist qui n'existe pas");
@@ -163,5 +163,24 @@ class Artist
             $artist->setId($id);
         }
         return $artist;
+    }
+    /**
+     * Exécute l'insertion de l'instance courante dans la table 'artist'.
+     * Met à jour l'identifiant de l'instance courante avec le dernier identifiant créé.
+     *
+     * @return Artist L'instance courante de l'objet Artist.
+     *
+     */
+    public function insert(): Artist
+    {
+
+        $stmtInsert = MyPdo::getInstance()->prepare(
+            <<<'SQL'
+            INSERT INTO ARTIST (name)
+            VALUES (:name)
+            SQL);
+        $stmtInsert->execute([$this->name]);
+        $this->id = (int)MyPdo::getInstance()->lastInsertId();
+        return $this;
     }
 }
