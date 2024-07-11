@@ -18,7 +18,9 @@ try {
     foreach ($artists as $artist) {
         $artistId = $artist->getId();
         $artistName = $webPage->escapeString($artist->getName());
-        $webPage->appendContent("<li class='artist'><a class='artist_item' href='artist.php?artistId=$artistId'>$artistName</a></li>");
+        $webPage->appendContent("<li class='artist'>
+                                            <a class='artist_item' href='artist.php?artistId=$artistId'>$artistName</a>
+                                         </li>");
     }
 
     $webPage->appendContent('</ul>');
