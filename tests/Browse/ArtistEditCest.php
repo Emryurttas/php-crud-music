@@ -104,4 +104,33 @@ class ArtistEditCest
             'name' => 'Slipknot'
         ]);
     }
+    public function deleteArtist(BrowseTester $I): void
+    {
+        $I->stopFollowingRedirects();
+        $I->amOnPage('/admin/artist-delete.php?artistId=4');
+        $I->seeResponseCodeIs(302);
+        $I->seeNumRecords(0, 'artist', [
+            'id' => 4,
+        ]);
+    }
+
+    public function deleteArtistWithoutId(BrowseTester $I): void
+    {
+        $I->amOnPage('/admin/artist-delete.php');
+        $I->seeResponseCodeIs(400);
+        $I->seeNumRecords(8, 'artist');
+    }
+
+    /**
+     * @example { "id": "", "code": 400 }
+     * @example { "id": "1000", "code": 404 }
+     * @example { "id": "id", "code": 400 }
+     */
+
+    public function deleteArtistWithWrongId(BrowseTester $I, Example $example): void
+    {
+        $I->amOnPage('/admin/artist-delete.php?artistId=' . $example['id']);
+        $I->seeResponseCodeIs($example['code']);
+        $I->seeNumRecords(8, 'artist');
+    }
 }
