@@ -5,6 +5,7 @@ modules:
         - Asserts
         - PhpBrowser:
               url: http://localhost:8080
+        - Db:
 extensions:
     enabled:
         - Codeception\Extension\RunProcess:
