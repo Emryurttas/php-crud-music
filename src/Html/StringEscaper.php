@@ -19,4 +19,17 @@ trait StringEscaper
         }
         return htmlspecialchars($text, ENT_QUOTES, 'UTF-8');
     }
+    /**
+     * Strips HTML tags and trims the text.
+     *
+     * @param string|null $text The text to process.
+     * @return string The processed string.
+     */
+    public function stripTagsAndTrim(?string $text): string
+    {
+        if ($text === null) {
+            return '';
+        }
+        return trim(strip_tags($text));
+    }
 }
