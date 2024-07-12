@@ -46,8 +46,10 @@ composer test:codecept
 composer test
 
 ## Ajout de scripts Composer
-## avec creation du scrip browse pour nettoyer les fichier output avant de faire le tests
+## avec creation du script browse pour nettoyer les fichiers output avant de faire le tests
         "test:browse": [
             "rm -rf tests/_output/*",
             "php vendor/bin/codecept run Browse"
         ]
+## script Form pour déclencher les tests 
+        "test:form": "php vendor/bin/codecept run Form"

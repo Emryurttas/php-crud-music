@@ -21,10 +21,12 @@
     },
     "require-dev": {
         "friendsofphp/php-cs-fixer": "^3.55",
-        "codeception/codeception": "^4.1",
-        "codeception/module-phpbrowser": "^1",
-        "codeception/module-asserts": "^1",
-        "codeception/module-db": "^1"
+        "codeception/codeception": "^4.2",
+        "codeception/module-phpbrowser": "^2.0",
+        "codeception/module-asserts": "^2.0",
+        "ext-dom": "*",
+        "ext-libxml": "*",
+        "codeception/module-db": "^2.1"
     },
     "scripts": {
         "start:linux": [
@@ -46,6 +48,7 @@
         "test": "@test:codecept",
         "test:browse": [
             "php vendor/bin/codecept run Browse"
-        ]
+        ],
+        "test:form": "php vendor/bin/codecept run Form"
     }
 }

@@ -41,12 +41,12 @@ class ArtistForm
         $id = $this->artist?->getId() ?? '';
         $name = $this->artist ? htmlspecialchars($this->artist->getName(), ENT_QUOTES | ENT_HTML5) : '';
         return <<<HTML
-            <form action="$action" method="post">
-                <input type="hidden" name="artist_id" value="$id">
-                <label for="artist_name">Nom:</label>
-                <input type="text" id="artist_name" name="artist_name" value="$name" required>
-                <button type="submit">Enregistrer</button>
-            </form>
-        HTML;
+        <form action="$action" method="post">
+            <input type="hidden" name="id" value="$id">
+            <label for="artist_name">Nom:</label>
+            <input type="text" id="artist_name" name="name" value="$name" required>
+            <button type="submit">Enregistrer</button>
+        </form>
+    HTML;
     }
 }
