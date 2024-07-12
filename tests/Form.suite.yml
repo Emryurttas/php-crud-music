@@ -1,0 +1,7 @@
+actor: FormTester
+modules:
+    enabled:
+      - PhpBrowser:
+          url: 'http://localhost'
+      - Tests\Helper\Dom
+      - Asserts
