@@ -28,7 +28,17 @@ try {
     $artistName = $webPage->escapeString($artist->getName());
     $pageTitle = "Albums de " . $artistName;
 
+    $webPage->appendCssUrl('/css/artist.css');
     $webPage->setTitle($pageTitle);
+
+    $editUrl = "/admin/artist-form.php?tvShowId=$artistId";
+    $deleteUrl = "/admin/artist-delete.php?tvShowId=$artistId";
+
+    $webPage->appendContent('<div class="menu">');
+    $webPage->appendContent('<a href="index.php" class="btn-home">Retour à l\'accueil</a>');
+    $webPage->appendContent('<a href="' . $editUrl . '" class="btn-edit">Modifier</a>');
+    $webPage->appendContent('<a href="' . $deleteUrl . '" class="btn-delete">Supprimer</a>');
+    $webPage->appendContent('</div>');
 
     $webPage->appendContent('<ul class="list">');
 

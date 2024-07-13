@@ -1,0 +1,137 @@
+/* General Styles */
+html, body {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    margin: 0;
+    padding: 0;
+    font-family: 'Arial', sans-serif;
+    background-color: #f5f5f5;
+    color: #333;
+}
+
+/* Header */
+.header {
+    text-align: center;
+    text-transform: uppercase;
+    font-weight: 300;
+    padding: 10px 0;
+    background: linear-gradient(to right, #6a11cb, #2575fc);
+    color: white;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+h1 {
+    color: white;
+    margin: 0;
+}
+
+/* Content */
+.content {
+    overflow: auto;
+    flex: 1;
+    padding: 20px;
+}
+
+/* Artist Styles */
+.artist {
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    border: 1px solid #ddd;
+    margin: 10px 0;
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.artist:hover {
+    transform: scale(1.02);
+    box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2);
+}
+
+.artist-item {
+    display: flex;
+    border: 1px solid #ddd;
+    padding: 10px;
+    border-radius: 8px;
+    margin: 5px 0;
+}
+
+/* Make entire artist container clickable */
+.artist a {
+    display: flex;
+    flex-direction: column;
+    text-decoration: none;
+    color: inherit;
+}
+
+/* List Styles */
+.list {
+    display: flex;
+    flex-direction: column;
+    list-style-type: none;
+    gap: 10px;
+    padding: 0;
+}
+
+/* Menu Styles */
+.menu {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Button Styles */
+.btn-create {
+    display: inline-block;
+    font-size: large;
+    background-color: #6a11cb;
+    color: white;
+    border: none;
+    cursor: pointer;
+    padding: 12px 20px;
+    border-radius: 8px;
+    transition: background-color 0.3s ease;
+}
+
+.btn-create:hover {
+    background-color: #2575fc;
+}
+
+/* Link Styles */
+a {
+    text-decoration: none;
+    color: inherit;
+    transition: color 0.3s ease;
+}
+
+a:hover {
+    color: #6a11cb;
+}
+
+/* Footer */
+.footer {
+    border: none;
+    text-align: center;
+    padding: 10px 0;
+    background: linear-gradient(to right, #6a11cb, #2575fc);
+    color: white;
+    box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.1);
+    border-radius: 0 0 8px 8px;
+}
+
+/* Responsive Design */
+@media (min-width: 1000px) {
+    .content {
+        width: 80%;
+        margin: auto;
+    }
+}
