@@ -11,9 +11,7 @@ try {
 
     $webPage->setTitle("Artistes");
 
-    $webPage->appendContent('<div class="menu">
-                                        <a href="/admin/artist-form.php" class="btn-create">Créer un artiste </a>
-                                    </div>');
+    $webPage->addToMenu('<a href="/admin/artist-form.php" class="btn-create">Créer un artiste</a>');
 
     $webPage->appendContent('<ul class="list">');
 
@@ -36,3 +34,4 @@ try {
     echo "An error occurred: ";
     exit;
 }
+
