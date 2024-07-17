@@ -1,0 +1,106 @@
+/* album.css */
+
+/* Reset some default styles */
+body, h1, h2, h3, h4, h5, h6, p, ul, ol, li {
+    margin: 0;
+    padding: 0;
+}
+
+/* General styles */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f0f0f0;
+    color: #333;
+    line-height: 1.6;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.menu {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    border-radius: 5px;
+    margin-bottom: 20px;
+}
+
+.menu a {
+    color: white;
+    text-decoration: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+}
+
+.menu a:hover {
+    background-color: #555;
+}
+
+.album {
+    width: 100%;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+
+.album {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.album a {
+    text-decoration: none;
+}
+
+.album img.album-poster {
+    width: 100%;
+    max-width: 600px;
+    height: auto;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s;
+}
+
+.album img.album-poster:hover {
+    transform: scale(1.05);
+}
+
+
+
+.song-list {
+    list-style: none;
+    padding: 0;
+}
+
+.song {
+    background-color: #fff;
+    margin: 10px 0;
+    padding: 10px 20px;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.song div {
+    font-size: 1.2em;
+}
+
+.btn-home, .btn-edit, .btn-delete {
+    transition: background-color 0.3s ease;
+}
+
+.btn-home {
+    background-color: #4CAF50;
+}
+
+.btn-edit {
+    background-color: #2196F3;
+}
+
+.btn-delete {
+    background-color: #f44336;
+}
