@@ -7,9 +7,9 @@ use Entity\Cover;
 use Entity\Exception\EntityNotFoundException;
 use Html\AppWebPage;
 
-try {
-    $webPage = new AppWebPage();
+$webPage = new AppWebPage();
 
+try {
     $artistId = $_GET['artistId'];
 
     if (empty($artistId) || !is_numeric($artistId)) {
@@ -31,40 +31,41 @@ try {
     $webPage->appendCssUrl('/css/artist.css');
     $webPage->setTitle($pageTitle);
 
-    // Ajout du menu
     $editUrl = "/admin/artist-form.php?tvShowId=$artistId";
     $deleteUrl = "/admin/artist-delete.php?tvShowId=$artistId";
-    $webPage->addToMenu('<a href="index.php" class="btn-home">Retour à l\'accueil</a>');
-    $webPage->addToMenu('<a href="' . $editUrl . '" class="btn-edit">Modifier</a>');
-    $webPage->addToMenu('<a href="' . $deleteUrl . '" class="btn-delete">Supprimer</a>');
 
-    // Contenu principal
+    $webPage->appendContent('<div class="menu">
+                                    <a href="index.php" class="btn-home">Retour à l\'accueil</a>
+                                    <a href="' . $editUrl . '" class="btn-edit">Modifier</a>
+                                    <a href="' . $deleteUrl . '" class="btn-delete">Supprimer</a>
+                                    </div>');
+
     $webPage->appendContent('<ul class="list">');
 
     $albums = $artist->getAlbums();
     foreach ($albums as $album) {
         $albumName = $webPage->escapeString($album->getName());
         $coverId = $album->getCoverId();
+        $albumId = $album->getId();
 
         try {
             $poster = Cover::findById((int)$coverId);
-            $albumPosterUrl = "cover.php?id=" . $poster->getId();
+            $albumPosterUrl = "cover.php?coverId=" . $poster->getId();
         } catch (EntityNotFoundException $e) {
             $albumPosterUrl = '';
         }
 
-        $link = "cover.php?coverId=$coverId";
+        $link = "album.php?albumId=$albumId";
         $webPage->appendContent("<li class='album'>
-                                    <a class='album_link' href='$link'>
-                                        <img class='album__cover' src='$link' alt='Poster de $albumName'/>
-                                    </a>
-                                    <div class='album__info'>
-                                        <div class='album__year'>{$album->getYear()}</div>
-                                        <div class='album__name'>$albumName</div>
-                                    </div>
-                                </li>");
+                                            <a class='album_link' href='$link'>
+                                                <img src='$albumPosterUrl' alt='Poster de $albumName'/>
+                                            </a>
+                                            <div class='album__info'>
+                                                <div class='album__year'>{$album->getYear()}</div>
+                                                <div class='album__name'>$albumName</div>
+                                            </div>
+                                        </li>");
     }
-
     $webPage->appendContent('</ul>');
 
     echo $webPage->toHTML();
