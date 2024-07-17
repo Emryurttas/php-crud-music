@@ -118,7 +118,7 @@ h1 {
 }
 
 .album__year {
-    text-align: left; /* Aligner à gauche */
+    text-align: left;
 }
 
 .album__name {
