@@ -2,7 +2,7 @@
 ## Auteur : YURTTAS Emre
 ## Installation / Configuration
 
-##  comment lancer le serveur Web local dans une partie « Serveur Web local » ?
+Serveur Web local
 1. Installer php
 2. Ouvrez un terminal et accédez au répertoire racine de votre projet
 3. Lancez le serveur PHP intégré avec la commande : 
